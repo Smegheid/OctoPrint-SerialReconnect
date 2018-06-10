@@ -1,0 +1,45 @@
+
+<form class="form-horizontal">
+
+  <h3>Serial Reconnect Settings</h3>
+  <div class="control-group">
+ 
+    <label class="control-label">Enable</label>
+    <div class="controls">
+      <div class="checkbox">
+        <input type="checkbox" data-bind="checked: settings.plugins.SerialReconnect.enabled">
+      </div>
+      <span class="help-inline"></span>
+    </div>
+   
+    <label class="control-label">Initial Delay</label>
+    <div class="controls">
+      <div class="input-append">
+        <input type="number" step="any" min="0" class="input-mini text-right" data-bind="value: settings.plugins.SerialReconnect.initial_delay">
+        <span class="add-on">s</span>
+      </div>
+      <span class="help-inline">Initial delay on startup before checking serial connection</span>
+    </div>
+   
+    <label class="control-label">Check Period</label>
+    <div class="controls">
+      <div class="input-append">
+        <input type="number" step="any" min="1" class="input-mini text-right" data-bind="value: settings.plugins.SerialReconnect.poll_period">
+        <span class="add-on">s</span>
+      </div>
+      <span class="help-inline">How frequently to check the serial connection</span>
+    </div>
+   
+    <label class="control-label">Consecutive offline</label>
+    <div class="controls">
+      <div class="input-append">
+        <input type="number" step="any" min="1" class="input-mini text-right" data-bind="value: settings.plugins.SerialReconnect.num_offline">
+      </div>
+      <span class="help-inline">Number of consecutive offline responses seen before reconnecting</span>
+    </div>
+
+  </div>
+</form>
+<p>The plugin will start monitoring the serial connection after a delay of 'Initial Delay' seconds (to allow the printer to connect, enumerate, settle, etc. after power-on). The connection will then be checked every 'Check Period' seconds.
+
+<p>If the printer is seen to be offline 'Consecutive offline' times in a row, then the plugin will attempt a reconnection, after which it will wait for 'Initial Delay' seconds before beginning again.
