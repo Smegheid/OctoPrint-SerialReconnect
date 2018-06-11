@@ -3,8 +3,8 @@
 This is a simple Octoprint plugin that repeatedly attempts to re-esablish
 the serial connection to a 3D printer when the connection is lost. The intent
 is to simplify the case where an attached 3D printer is turned off and then
-turned on again; by default, Octoprint will not reconnect to the printer
-unless it is restarted.
+turned on again at some later time; by default, Octoprint will not reconnect
+to the printer unless it is restarted.
 
 This was originally a little cron-powered script written against Octoprint's
 API to make things a little simpler for my daughter. The script would check
@@ -16,10 +16,11 @@ and publish it. Hopefully it proves useful to someone.
 It's worth noting that this has seen all of its testing against a couple of
 Monoprice Mini Select v2 printers (one at work, one at home). It appears to
 work well enough against that printer when run on an instance of OctoPi, but
-this is the only hardware that it's been explicitly tested against. That said,
-I wouldn't imagine that things would be too different with another printer;
-the plugin doesn't do anything that's specific to the MP Mini, but instead
-only pokes at Octoprint's printer connection API.
+this is the only hardware that it's been explicitly tested against, and I'm
+unlikely to be in any position to test with other devices any time soon.
+That said, I wouldn't imagine that things would be too different with another
+printer; the plugin doesn't do anything that's specific to the MP Mini, but
+instead only pokes at Octoprint's printer connection API.
 
 ## Setup
 
@@ -37,7 +38,7 @@ or disable checking completely, a couple of periods used in initial startup
 and polling, and a threshold for the number of consecutive polls where the
 printer is seen as disconnected before attempting a reconnect.
 
-The defaults set by the plugin seem rasonable for an MP Select Mini, but
+The defaults set by the plugin seem reasonable for an MP Select Mini, but
 they may not play well with all other types of printer, so they're made
 tweakable just in case.
 
