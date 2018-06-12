@@ -43,3 +43,5 @@
 <p>The plugin will start monitoring the serial connection after a delay of 'Initial Delay' seconds (to allow the printer to connect, enumerate, settle, etc. after power-on). The connection will then be checked every 'Check Period' seconds.
 
 <p>If the printer is seen to be offline 'Consecutive offline' times in a row, then the plugin will attempt a reconnection, after which it will wait for 'Initial Delay' seconds before beginning again.
+
+<p><b>Note:</b> It is recommended that these settings not be adjusted while the printer is off. One side-effect observed is that once the printer is powered off, Octoprint's connection UI (Printer -> Serial Connection) will often revert to showing 'AUTO' for the serial port; if the plugin's settings are saved at this point, then not only are the new values saved, but any manually-set serial port is also overwritten as the 'save' button saves all changes from the current config, not just the visible page.

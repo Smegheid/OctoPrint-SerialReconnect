@@ -40,22 +40,17 @@ class SerialReconnectPlugin(octoprint.plugin.AssetPlugin,
     port = serial['portPreference']
     baud = serial['baudratePreference']
 
-    # This only makes sense if octoprint gives us enough info to connect.
-    if not (port and baud):
-      self._logger.info("Unable to to get port/baud rate (port=%r, baud=%r)."
-                        % (port, baud))
-      return
-
-    # If the device node does not exist (USB-serial disappears when unplugged or
-    # printer turned off) then don't bother even trying. This will reduce
-    # the number of connection error notifications in Octoprint's UI due to us
-    # poking at things behind the scenes.
-    if not path.exists(port):
-      self._logger.info("Unable to reconnect: serial port %r not found." % port);
-      return
+    # If the printer is set up with a particular serial port, then there's one thing
+    # we can do to reduce the number of connection error notifications that we cause
+    # with reconnect attempts. If the device node does not exist (USB-serial disappears
+    # when unplugged or printer turned off) then don't bother even trying.
+    if port and (port != 'AUTO'):
+      if not path.exists(port):
+        self._logger.info("Unable to reconnect: serial port %r not found." % port);
+        return
       
     # Attempt to reconnect.
-    self._logger.debug("Reconnecting to printer on %r at %r baud" % (port, baud))
+    self._logger.info("Reconnecting to printer on %r at %r baud" % (port, baud))
     self._printer.connect(port=port, baudrate=baud)
 
 
